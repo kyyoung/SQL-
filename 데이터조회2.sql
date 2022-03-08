@@ -36,9 +36,7 @@ select empno as eno,
  order by deptno asc,
        sal desc;
  
---alias 사용예제 
-
---dual table : 테이블이 필요없는 select절 완성시 사용, dual이라는 테이블을 사용하여 연산, 현재날짜와 시간 등을 조외할 수 있음 
+*** dual table : 테이블이 필요없는 select절 완성시 사용, dual이라는 테이블을 사용하여 연산, 현재날짜와 시간 등을 조회할 수 있음 
 select 24*65
   from dual;
  
@@ -48,9 +46,19 @@ select sysdate
 select round(1234.56) --round 반올림 
   from dual ;
  
---함수 :  input이 함수의 특성에 맞게 변환되어 출력(output)
+*** 함수 :  input이 함수의 특성에 맞게 변환되어 출력(output)
+** 단일 행 함수: 한 번에 한 건씩 처리 
+1) 데이터 조작을 위해 사용(1:1 매칭)
+2) 인수를 사용하여 값을 변환
+3) 인수, 상수, 변수, 컬럼, 표현식 
+4) 행 당 하나의 결과 반환 
+5) SELECT, WHERE, ORDER BY절에 사용
+6) 데이터 타입 변경 
+7) 중복사용 가능 
+종류: 문자함수, 숫자함수, 날짜함수, 변환함수, 기타함수 
 
---initcap : 첫 글자만 대문자로 변환, 문자에만 쓰임 
+1) 문자함수 
+*** initcap : 첫 글자만 대문자로 변환, 문자에만 쓰임 
 select 'abcd',
        initcap('abcd') --camel 표기법 
   from dual;
@@ -59,15 +67,15 @@ select ename,
        initcap(ename)
   from emp;
  
---lower : 소문자 치환
+*** lower : 소문자 치환
 
---upper : 대문자 치환
+*** upper : 대문자 치환
 select ename,
        lower(ename),
        upper(ename)
   from emp;
  
---length, lengthb : 글자의 크기 출력
+*** length, lengthb : 글자의 크기 출력
 select 'abcd',
        length('abcd'),
        lengthb('abcd'),
@@ -78,9 +86,11 @@ select 'abcd',
  
 --한글은 한 글자당 4바이트, 영어는 한 글자당 1바이트, length는 글자수 출력 lengthb는 바이트 출력 
 
---substr : 추출함수(중요) 
+*** substr : 추출함수(중요) 
+-- substr(원본문자열, 추출할 문자(숫자)의 시작위치(m), 지정 길이(n)) 
+문자열 중 지정한 위치(m)에서 지정한 길이(n) 만큼 문자 추출 
+select와 where절에서 주로 사용, order by에서도 쓸 수 있음 n부분은 생략할 수 있고 생략할 경우 끝까지 출력됨 
 
---substr(원본문자열, 추출할 문자(숫자)의 시작위치[, 개수]) select와 where절에서 주로 사용, order by에서도 쓸 수 있음 [] 부분은 생략할 수 있고 생략할 경우 끝까지 출력됨 
 select 'abcdefg',
        substr('abcdefg', 1, 2)
   from dual;
