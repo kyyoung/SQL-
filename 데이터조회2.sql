@@ -68,7 +68,6 @@ select ename,
   from emp;
  
 *** lower : 소문자 치환
-
 *** upper : 대문자 치환
 select ename,
        lower(ename),
@@ -278,11 +277,13 @@ select 'abcda',
 select translate ('abcda', '!ac', '!'), --삭제기능
        translate ('abcda', 'ac','acv') --아무변화없음 
    from dual;
+
 select translate ('1234', '12', 'ab'), --12가 ab로 치환
        translate ('123421', '12', 'ab'), --12와 21이 ab로 치환, 즉 ab 순서의 상관은 없음
        translate ('123421', '12', 'abc'), --12와 21이 ab로 치환, 글자의 갯수가 매칭되지 않았기 때문에 c는 치환되지 않음 
        translate ('123421', '123', 'ab') --123과 21이 ab로 치환 
    from dual; 
+
 --예제) professor 테이블에서 교수 아이디에서 특수문자 모두 제거후 출력
 select id,
        replace(replace(ID, '-', '') , '*', '') --id 에서 -을 공백으로 바꾼 후에 *를 또 공백으로 바꾸는 형식 
@@ -295,6 +296,7 @@ select id,
 --연습문제 emp 테이블에서 급여를 모두 동일한 자리수로 출력
 select lpad (sal, 4, '*')
   from emp ;
+
 --연습문제 student 테이블에서 이름의 두번째 글자를 #처리
 select name, replace(name, substr(name,2,1), '#' )
   from student ; 
@@ -326,7 +328,9 @@ select 1234.567,
 --3. mod(숫자, 숫자) : 나머지 구하는 것 
 select mod(9,3), mod(9,2) --9를 3으로 나누면 0, 9를 2로 나누면 1
   from dual; 
+
 --4. ceil(숫자) :  (숫자)보다 크면서 최소정수
+
 --5. floor(숫자) : (숫자)보다 작으면서 최대정수
 
 select 1.3,
